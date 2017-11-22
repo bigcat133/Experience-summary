@@ -1,0 +1,25 @@
+### 安装 opkg
+准备一个小u盘，格式化成ext3或ext4
+执行：
+```shell
+entware-setup.sh
+```
+并按提示选择u盘安装
+如果提示安装失败可以重启路由后再试
+
+完成后执行进行更新
+```shell
+opkg update
+opkg upgrade
+```
+
+### 安装 shadowsocks-libev
+可以用一下命令查找要安装的列表
+```shell
+opkg list|grep shadowsocks
+```
+列出后一一安装即可
+
+### dnsmasq-full 的问题
+目前华硕的固件内存消耗很大如果使用opkg中的dnsmasq-full会导致内存耗尽
+得要想其他的办法
