@@ -23,3 +23,14 @@ opkg list|grep shadowsocks
 ### dnsmasq-full 的问题
 目前华硕的固件内存消耗很大如果使用opkg中的dnsmasq-full会导致内存耗尽
 得要想其他的办法
+
+### ipset and iptables
+目前如果要执行下面的ipset命令：
+```shell
+ipset -N gfwlist iphash iptables -t nat -A PREROUTING -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-port 1080
+```
+需要加载内核模块 xt_set：
+```shell
+modprobe xt_set
+```
+作者说在382.2版本会默认加载这个内核模块
