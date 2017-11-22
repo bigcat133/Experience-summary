@@ -23,6 +23,9 @@ opkg list|grep shadowsocks
 ### dnsmasq-full 的问题
 目前华硕的固件内存消耗很大如果使用opkg中的dnsmasq-full会导致内存耗尽
 得要想其他的办法
+另外merlin自带的dnsmasq配置是在jffs中修改
+可以在jffs中增加配置文件
+/jffs/configs/dnsmasq.conf.add
 
 ### ipset and iptables
 目前如果要执行下面的ipset命令：
