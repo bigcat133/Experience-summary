@@ -37,3 +37,10 @@ ipset -N gfwlist iphash iptables -t nat -A PREROUTING -p tcp -m set --match-set 
 modprobe xt_set
 ```
 作者说在382.2版本会默认加载这个内核模块
+
+
+### ip地址归属检查
+可以通过该命令得到中国地区ip地址的集合
+```
+wget -o http://www.ipdeny.com/ipblocks/data/countries/cn.zone
+```
