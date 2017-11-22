@@ -27,7 +27,7 @@ ss-tunnel -c config.conf -b 0.0.0.0 -l 5353 -u -v
 ```json
 {
 "server":["serv ip"],
-"server_port":serv-port,
+"server_port":8956,
 "local_address":"127.0.0.1",
 "local_port":1080,
 "password":"password",
