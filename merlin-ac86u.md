@@ -1,31 +1,31 @@
 ### 安装 opkg
-准备一个小u盘，格式化成ext3或ext4
-执行：
+准备一个小u盘，格式化成ext3或ext4 
+执行： 
 ```shell
 entware-setup.sh
 ```
-并按提示选择u盘安装
-如果提示安装失败可以重启路由后再试
+并按提示选择u盘安装 
+如果提示安装失败可以重启路由后再试 
 
-完成后执行进行更新
+完成后执行进行更新 
 ```shell
 opkg update
 opkg upgrade
 ```
 
 ### 安装 shadowsocks-libev
-可以用一下命令查找要安装的列表
+可以用一下命令查找要安装的列表 
 ```shell
 opkg list|grep shadowsocks
 ```
 列出后一一安装即可
 
 ### dnsmasq-full 的问题
-目前华硕的固件内存消耗很大如果使用opkg中的dnsmasq-full会导致内存耗尽
-得要想其他的办法
-另外merlin自带的dnsmasq配置是在jffs中修改
-可以在jffs中增加配置文件
-/jffs/configs/dnsmasq.conf.add
+目前华硕的固件内存消耗很大如果使用opkg中的dnsmasq-full会导致内存耗尽 
+得要想其他的办法 
+另外merlin自带的dnsmasq配置是在jffs中修改 
+可以在jffs中增加配置文件 
+/jffs/configs/dnsmasq.conf.add 
 
 ### ipset and iptables
 目前如果要执行下面的ipset命令：
@@ -46,6 +46,18 @@ wget -o http://www.ipdeny.com/ipblocks/data/countries/cn.zone
 ```
 
 ### iptables 设置 geoip 的脚本
+这里使用的是通过geoip来区分是否需要通过redir来转发信息，这里执行时会加载geoip信息 
+需要在启动时将 geoipdb.idx，geoipdb.bin 两个文件复制到 /var/geoip/ 目录下 
+
+#### start 函数
+先加载 xt_geoip 和 xt_TPROXY 两个模块 
+geoip 是用来做地址ip处理，xt_TPROXY 是用来处理udp转发功能 
+之后再设置 tcp 和 udp 的转发
+
+#### stop 函数
+remove geoip && xt_TPROXY
+使用 del_in_table 移除 iptables 配置
+
 ```shell
 #!/bin/sh
 
@@ -92,7 +104,10 @@ del_in_table() {
 }
 
 stop() {
-    del_in_table nat
+    ( lsmod | grep xt_geoip ) && rmmod xt_geoip
+    ( lsmod | grep TPROXY ) && rmmod xt_TPROXY
+
+    del_in_table nat
     del_in_table mangle
 }
 
