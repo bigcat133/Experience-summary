@@ -47,16 +47,16 @@ wget -o http://www.ipdeny.com/ipblocks/data/countries/cn.zone
 
 ### iptables 设置 geoip 的脚本
 这里使用的是通过geoip来区分是否需要通过redir来转发信息，这里执行时会加载geoip信息 
-需要在启动时将 geoipdb.idx，geoipdb.bin 两个文件复制到 /var/geoip/ 目录下 
+ 需要在启动时将 geoipdb.idx，geoipdb.bin 两个文件复制到 /var/geoip/ 目录下 
 
 #### start 函数
 先加载 xt_geoip 和 xt_TPROXY 两个模块 
-geoip 是用来做地址ip处理，xt_TPROXY 是用来处理udp转发功能 
-之后再设置 tcp 和 udp 的转发
+ geoip 是用来做地址ip处理，xt_TPROXY 是用来处理udp转发功能 
+ 之后再设置 tcp 和 udp 的转发
 
 #### stop 函数
 remove geoip && xt_TPROXY
-使用 del_in_table 移除 iptables 配置
+ 使用 del_in_table 移除 iptables 配置
 
 ```shell
 #!/bin/sh
