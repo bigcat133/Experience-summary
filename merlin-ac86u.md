@@ -108,7 +108,7 @@ del_in_table() {
 }
 
 stop() {
-    ( lsmod | grep xt_geoip ) && rmmod xt_geoip
+    ( lsmod | grep "xt_geoip" ) && rmmod xt_geoip
     ( lsmod | grep TPROXY ) && rmmod xt_TPROXY
 
     del_in_table nat
