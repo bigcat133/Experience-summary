@@ -44,6 +44,10 @@ modprobe xt_set
 ```shell
 wget -o http://www.ipdeny.com/ipblocks/data/countries/cn.zone
 ```
+也可以在这里得到相关的数据库信息
+```url
+http://dev.maxmind.com/geoip/legacy/geolite/
+```
 
 ### iptables 设置 geoip 的脚本
 这里使用的是通过geoip来区分是否需要通过redir来转发信息，这里执行时会加载geoip信息 
