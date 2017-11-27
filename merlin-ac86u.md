@@ -48,6 +48,19 @@ wget -o http://www.ipdeny.com/ipblocks/data/countries/cn.zone
 ```url
 http://dev.maxmind.com/geoip/legacy/geolite/
 ```
+可以通过以下操作转换为 geoipdb.idx，geoipdb.bin
+```shell
+mkdir -p /usr/src/geoip
+cd /usr/src/geoip
+wget http://www.maxmind.com/download/geoip/database/GeoIPCountryCSV.zip
+unzip GeoIPCountryCSV.zip
+wget http://people.netfilter.org/peejix/geoip/tools/csv2bin-20041103.tar.gz
+tar zxvf csv2bin-20041103.tar.gz
+cd /usr/src/geoip/csv2bin
+make
+./csv2bin ../GeoIPCountryWhois.csv
+```
+在执行 csv2bin 时由于文件过大导致 stack smashing detected 时，可以裁剪部分不需要的国家信息
 
 ### iptables 设置 geoip 的脚本
 这里使用的是通过geoip来区分是否需要通过redir来转发信息，这里执行时会加载geoip信息 
