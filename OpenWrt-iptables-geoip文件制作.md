@@ -20,5 +20,6 @@ sudo perl -MCPAN -e 'install Text::CSV_XS'
 ```
 
 将目录BE(LE)下生成的*.iv4 *.iv6 文件复制到/usr/share/xt_geoip/BE(LE)/
+（高版本的xtables-addons生成的文件有可能不会再区分BE和LE）
 
 以上文件生成完成
