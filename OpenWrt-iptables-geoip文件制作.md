@@ -1,4 +1,8 @@
 从这里下载 http://sourceforge.net/projects/xtables-addons/files/Xtables-addons/ Xtables-addons
+下载的版本需要与iptables的版本一致，iptables的版本可以通过下面的命令查看：
+```
+iptables -V
+```
 
 ```
 ./configure
