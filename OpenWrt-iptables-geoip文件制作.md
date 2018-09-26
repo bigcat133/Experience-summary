@@ -14,6 +14,10 @@ make
 ./xt_geoip_build GeoIPCountryWhois.csv
 ```
 
+GeoIPCountryWhois.csv的下载地址可以从这里得到
+https://dev.maxmind.com/geoip/legacy/geolite/
+
+
 如果遇到 Can't locate Text/CSV_XS.pm in @INC 可以按如下方法解决
 ```
 sudo perl -MCPAN -e 'install Text::CSV_XS'
