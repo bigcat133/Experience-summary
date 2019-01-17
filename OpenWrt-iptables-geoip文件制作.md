@@ -10,7 +10,6 @@ make
 ```
 进入 geoip
 ```
-./xt_geoip_dl
 ./xt_geoip_build GeoIPCountryWhois.csv
 ```
 
