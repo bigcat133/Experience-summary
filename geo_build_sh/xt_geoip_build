@@ -307,30 +307,3 @@ sub ip6_swap
 {
 	return pack("V*", unpack("N*", shift @_));
 }
-
-sub writeCountry_old
-{
-	my ($iso_code, $name, $family, @ranges) = @_;
-	my $fh;
-
-	printf "%5u IPv%s ranges for %s %s\n",
-		scalar(@ranges),
-		($family == AF_INET ? '4' : '6'),
-		$iso_code, $name;
-
-	my $file = "$target_dir/".uc($iso_code).".iv".($family == AF_INET ? '4' : '6');
-	if (!open($fh, '>', $file)) {
-		print STDERR "Error opening $file: $!\n";
-		exit 1;
-	}
-
-	binmode($fh);
-
-	foreach my $range (@ranges) {
-		my ($start, $end) = split('-', $range);
-		$start = inet_pton($family, $start);
-		$end = inet_pton($family, $end);
-		print $fh $start, $end;
-	}
-	close $fh;
-}
