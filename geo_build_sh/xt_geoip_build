@@ -268,7 +268,6 @@ sub writeCountry
 	if($family == AF_INET){
 		foreach my $range (@ranges) {
 			my ($start, $end) = split('-', $range);
-			#print "%s::%s\n", $start, $end;
 			my $start_int = new Net::IP($start)->intip();
 			my $end_int = new Net::IP($end)->intip();
 			print $fh_le pack("VV", $start_int, $end_int);
@@ -278,7 +277,6 @@ sub writeCountry
 	else{
 		foreach my $range (@ranges) {
 			my ($start, $end) = split('-', $range);
-			#print "%s::%s\n", $start, $end;
 			my $start_int = new Net::IP($start)->intip();
 			my $end_int = new Net::IP($end)->intip();
 			print $fh_be $start_int, $end_int;
@@ -287,32 +285,6 @@ sub writeCountry
 	}
 	close $fh_le;
 	close $fh_be;
-
-	#printf "%5u IPv4 ranges for %s %s\n",
-	#	scalar(@{$country->{pool_v4}}),
-	#	$iso_code, $country->{name};
-
-	#$file = "$target_dir/LE/".uc($iso_code).".iv4";
-	#if (!open($fh_le, "> $file")) {
-	#	print STDERR "Error opening $file: $!\n";
-	#	exit 1;
-	#}
-	#$file = "$target_dir/BE/".uc($iso_code).".iv4";
-	#if (!open($fh_be, "> $file")) {
-	#	print STDERR "Error opening $file: $!\n";
-	#	exit 1;
-	#}
-	
-	#my($iso_code, $country) = @_;
-	#my @ranges;
-
-	#@ranges = $country->{pool_v4}->list_range();
-
-	#writeCountry($iso_code, $country->{name}, AF_INET, @ranges);
-
-	#@ranges = $country->{pool_v6}->list_range();
-
-	#writeCountry($iso_code, $country->{name}, AF_INET6, @ranges);
 }
 
 sub ip6_pack
