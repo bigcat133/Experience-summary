@@ -30,6 +30,7 @@ xt_geoip_build 用来生成过滤文件
 ```sh
 ./xt_geoip_build -S GeoLite2-Country-CSV-Directory/
 ```
+但这个脚本没有经过完成验证，目前不推荐
 
 执行时如果遇到 Can't locate Text/CSV_XS.pm in @INC 可以按如下方法解决
 ```
