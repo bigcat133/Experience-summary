@@ -1,0 +1,10 @@
+### mosh 转发例子
+``` iptables
+iptables -t nat -A PREROUTING -p tcp -m tcp --dport 11559 -j DNAT --to-destination 178.254.55.220:22 iptables -t nat -A PREROUTING -p udp -m udp --dport 60159:60168 -j DNAT --to-destination 178.254.55.220 iptables -t nat -A POSTROUTING -j MASQUERADE sysctl -w net.ipv4.ip_forward=1 
+```
+
+
+然后，使用
+```sh
+mosh -p 60159 --ssh='ssh -p 11559' server-in-dmz连接mosh -p 60159 --ssh='ssh -p 11559' server-in-dmz
+```
