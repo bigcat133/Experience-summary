@@ -8,3 +8,6 @@ iptables -t nat -A PREROUTING -p tcp -m tcp --dport 11559 -j DNAT --to-destinati
 ```sh
 mosh -p 60159 --ssh='ssh -p 11559' server-in-dmz连接mosh -p 60159 --ssh='ssh -p 11559' server-in-dmz
 ```
+
+另外一个思路是使用
+tproxy
