@@ -11,3 +11,4 @@ mosh -p 60159 --ssh='ssh -p 11559' server-in-dmz连接mosh -p 60159 --ssh='ssh -
 
 另外一个思路是使用
 tproxy
+[https://blog.csdn.net/lvshaorong/article/details/53203674]
