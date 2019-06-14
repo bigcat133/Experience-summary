@@ -25,12 +25,23 @@ xt_geoip_build 用来生成过滤文件
 
 ### iptables 1.6.x以下兼容脚本
 由于openwrt生成1.6.x版本一下的geoip文件，可以用以下办法
-1. 通过geo_build_sh包中的geoip_build_cvs.py来生成GeoIPCountryWhois.csv文件，再用低于1.6.x版的xt_geoip_build来生成ipv4版本,目前在geo_build_sh目录中命名为xt_geoip_build_old，这种方法生成的ipv6文件将是空文件。
-2. 直接通过geo_build_sh包中的xt_geoip_build脚本来生成，执行命令为：
+1. 通过geo_build_sh包中的geoip_build_cvs.py来生成GeoIPCountryWhois.csv文件
+```bash
+python geoip_build_cvs.py
+```
+2. 再用低于1.6.x版的xt_geoip_build来生成ipv4版本, 不过由于旧版不支持ipv6所以生成的iv6文件将是空文件。
+```bash
+./xt_geoip_build GeoIPCountryWhois.csv
+```
+
+### 未验证方法
+1. 直接通过geo_build_sh包中的xt_geoip_build脚本来生成，执行命令为：
 ```sh
 ./xt_geoip_build -S GeoLite2-Country-CSV-Directory/
 ```
-但这个脚本没有经过完成验证，目前不推荐
+但这个脚本没有经过完整验证，目前不推荐
+
+### PS
 
 执行时如果遇到 Can't locate Text/CSV_XS.pm in @INC 可以按如下方法解决
 ```
